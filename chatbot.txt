@@ -1,0 +1,34 @@
+def hostel_chatbot():
+    print("🤖 Hostel Complaint Bot")
+    print("Type your complaint (or 'exit' to finish):\n")
+
+    log = []
+
+    while True:
+        msg = input("You: ").lower()
+
+        if "exit" in msg:
+            break
+
+        log.append(msg)
+
+        if "food" in msg:
+            print("🤖 Food issue noted.")
+        elif "room" in msg or "clean" in msg:
+            print("🤖 Room issue noted.")
+        elif "wifi" in msg or "internet" in msg:
+            print("🤖 Internet issue noted.")
+        elif "water" in msg:
+            print("🤖 Water issue noted.")
+        elif "electricity" in msg or "light" in msg:
+            print("🤖 Electricity issue noted.")
+        else:
+            print("🤖 Complaint noted.")
+
+    print("\n🤖 Complaints logged:")
+    for i, c in enumerate(log, 1):
+        print(f"{i}. {c}")
+    print("Thank you!")
+
+# Run the chatbot
+hostel_chatbot()

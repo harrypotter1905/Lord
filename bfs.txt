@@ -1,0 +1,48 @@
+# Breadth First Search (BFS) with user input for an undirected graph
+from collections import deque
+
+def bfs(graph, start_vertex):
+    visited = set()
+    queue = deque()
+
+    visited.add(start_vertex)
+    queue.append(start_vertex)
+
+    while queue:
+        vertex = queue.popleft()
+        print(vertex, end=' ')
+
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+if __name__ == "__main__":
+    graph = {}
+
+    # Take input for number of vertices and edges
+    num_vertices = int(input("Enter the number of vertices: "))
+    num_edges = int(input("Enter the number of edges: "))
+
+    # Initialize graph with empty list for each vertex
+    for i in range(num_vertices):
+        vertex = input(f"Enter name of vertex {i+1}: ")
+        graph[vertex] = []
+
+    # Take input for edges
+    print("Enter edges (vertex1 vertex2):")
+    for _ in range(num_edges):
+        v1, v2 = input().split()
+        graph[v1].append(v2)
+        graph[v2].append(v1)  # because the graph is undirected
+
+    # Display the adjacency list
+    print("\nThe adjacency list of the graph is:")
+    for vertex in graph:
+        print(f"{vertex} -> {graph[vertex]}")
+
+    # Perform BFS
+    start_vertex = input("\nEnter the starting vertex for BFS: ")
+
+    print("\nBreadth First Search traversal:")
+    bfs(graph, start_vertex)
